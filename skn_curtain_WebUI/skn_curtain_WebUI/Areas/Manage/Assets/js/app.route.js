@@ -86,7 +86,10 @@ BackOffice.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
                         return $ocLazyLoad.load({
                             name: 'BackOffice',
                             files: [
-                                '../areas/manage/assets/js/views/customers/customers.controller.js'
+                                '../areas/manage/assets/libs/jquery.ui.widget.js',
+                                '../areas/manage/assets/js/views/customers/customers.controller.js',
+                                '../areas/manage/assets/libs/jquery-minicolors/jquery.minicolors.css',
+                                '../areas/manage/assets/libs/jquery-minicolors/jquery.minicolors.min.js',
                             ]
                         });
                     }

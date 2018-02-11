@@ -213,4 +213,90 @@ body {
     margin-left: 3.2cm;
 }
 
+.portlet .portlet-body .portlet .portlet-body .portlet,
+.modal-body .portlet {
+    box-shadow: none;
+}
+
+.portlet .portlet-body .portlet .portlet-title .tools .up > i,
+.portlet .portlet-body .portlet .portlet-title .tools .down > i {
+    color: #fff;
+    font-size: 25px;
+}
+
+.portlet.box.blue-hoki {
+    border: 1px solid #869ab3 !important;
+}
+
+.portlet-empty {
+    border: 2px dashed #b1b1b1 !important;
+    border-radius: 10px;
+    display: block;
+    color: #b1b1b1;
+    opacity: 0.2;
+    font-size: 5em;
+    text-align: center;
+}
+
+    .portlet-empty i {
+        color: #b1b1b1;
+        font-size: 1em;
+    }
+
+    .portlet-empty:hover {
+        opacity: 1;
+    }
+
+.top-news a.btn {
+    margin-left: 0;
+}
+
+
+.horizantal-box {
+    border: 1px solid #b1b1b1;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 5px 15px 5px;
+    position: relative;
+}
+
+
+.horizantal-box > button.remove {
+    box-shadow: none;
+    border: none;
+    background: none;
+    color: #ff0000;
+    position: absolute;
+    right: -7px;
+    top: 2px;
+    z-index: 14;
+}
+
+
+.horizantal-box > button.remove > i {
+    font-size: 25px;
+}
+.horizantal-box-empty {
+    border: 2px dashed #b1b1b1;
+    display: block;
+    opacity: 0.2;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0 5px;
+    height: 75px;
+    line-height: 85px;
+}
+
+
+    .horizantal-box-empty:hover {
+        opacity: 1;
+    }
+
+
+    .horizantal-box-empty > i {
+        color: #b1b1b1;
+        font-size: 5em;
+    }
+
 /*Gýda Bankasý Makbuz Css Kodlarý - END*/

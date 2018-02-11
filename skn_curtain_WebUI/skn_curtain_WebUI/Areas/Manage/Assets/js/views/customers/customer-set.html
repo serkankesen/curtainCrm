@@ -39,7 +39,7 @@
                         <label>Email</label>
                         <textarea class="form-control" placeholder="Email" rows="3" ng-model="customer[0].Email"></textarea>
                     </div>
-                   
+
                 </div>
 
                 <div class="col-xs-12 col-sm-6">
@@ -73,6 +73,87 @@
             <!-- End row -->
         </div>
         <!-- End portlet-body -->
+    </div>
+    <!-- End portlet -->
+    <!--div eklenecek-->
+    <!-- End portlet grey -->
+</div>
+<div class="page-content-wrapper1">
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-product"></i>
+                <span class="caption-subject bold uppercase"> Perde Ölçü Bilgileri </span>
+            </div>
+           
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">
+                    <div class="form-group">
+                        <a ng-click='e1()' class='btn blue-steel'>
+                        <span class='md-click-circle' style='height: 365px; width: 365px; top: -141.5px; left: -46px;'></span>
+                        <em>Oda bilgisi giriniz</em></a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-10">
+                    <div class="form-group">
+                        <div class="portlet box blue-steel"  ng-repeat="item in model.Customers.CurtainInfoes">
+                            <div class="portlet-title ">
+                                <div class="caption">
+                                    <span class="caption-subject bold uppercase">
+                                        {{item.yeni==1?'Yeni':''}} Oda bilgisi giriniz
+                                    </span>
+                                </div>
+                                <div class="tools">
+                                    <a ng-click="splice($index, model.Customers.CurtainInfoes[$index].Id)" class="remove" data-original-title="Kaldır" title=""></a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject bold uppercase">{{model.Customers.CurtainInfoes[$index].Room}}</span>
+                                        </div>
+                                        <div class="tools">
+                                            <a href="javascript:;" class="collapse" data-original-title="Kapat / Aç" title=""></a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" placeholder="Oda İsmi Giriniz" ng-model="model.Customers.CurtainInfoes[$index].Room" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="number" placeholder="Yükseklik Giriniz" ng-model="model.Customers.CurtainInfoes[$index].Height" />
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Bilgi Giriniz" ng-model="model.Customers.CurtainInfoes[$index].Description" />
+                                        </div>
+                                        <div class="row horizantal-box" ng-repeat="sitem in model.Customers.CurtainInfoes[$index].Columns">
+                                            <button class="remove" ng-click="splicese1($index, item.sayi)"><i class="fa fa-times-circle"></i></button>
+                                            <input type="hidden" ng-model="sitem.isActive" value="true" />
+                                            <div class="form-group col-xs-12 col-sm-6">
+                                                <label>Bölge</label>
+                                                <input class="form-control " type="text" ng-model="sitem.ColumnName" />
+                                            </div>
+                                            <div class="form-group col-xs-12 col-sm-6">
+                                                <label>Boyut</label>
+                                                <input class="form-control" type="number" ng-model="sitem.ColumnWidth" />
+                                            </div>
+
+                                        </div>
+                                        <a href="javascript:;s" class="row horizantal-box-empty" ng-click="e1clone(model.Customers.CurtainInfoes[$index].sayi)">
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- End portlet -->
     <!--div eklenecek-->
