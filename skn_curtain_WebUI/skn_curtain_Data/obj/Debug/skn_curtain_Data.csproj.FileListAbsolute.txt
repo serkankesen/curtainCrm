@@ -1,0 +1,15 @@
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\skn_curtain_Data.dll.config
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\skn_curtain_Data.dll
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\skn_curtain_Data.pdb
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\EntityFramework.dll
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\EntityFramework.xml
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\obj\Debug\skn_curtain_Data.csproj.CoreCompileInputs.cache
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\obj\Debug\skn_curtain_Data.dll
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\obj\Debug\skn_curtain_Data.pdb
+C:\Users\serka\Documents\Visual Studio 2017\Projects\skn_curtain_WebUI\skn_curtain_Data\obj\Debug\skn_curtain_Data.csprojResolveAssemblyReference.cache

@@ -1,0 +1,34 @@
+﻿/** Created by Yarkin ÜÇERLER & Serkan KESEN date 09.12.2015 14.30 **/
+
+/*============================= Header Page Custom Css Begin ======================================*/
+
+.section-header {
+    min-height: 75px
+}
+
+
+/*============================= Header Page Custom Css End ======================================*/
+
+
+/*============================= Content Page Custom Css Begin ======================================*/
+
+.section-content p {
+    font-weight:900;
+    margin-top:15px;
+}
+
+
+/*============================= Content Page Custom Css End ======================================*/
+
+
+/*============================= Footer Page Custom Css Begin ======================================*/
+
+.section-footer {
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+
+/*============================= Footer Page Custom Css End ======================================*/

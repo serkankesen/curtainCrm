@@ -1,0 +1,216 @@
+/** Created by Yarkin ÜÇERLER & Serkan Kesen */
+
+
+/*============================= Login Page Custom Css Begin ======================================*/
+
+.section-login{
+    padding: 10% 0 0 40px;
+}
+
+.section-login .login {
+    background-color: #ebebeb;
+    padding: 15px;
+    box-shadow: 0 0 10px 0 rgba(30,30,30, .75)
+}
+
+.section-login .go-back {
+    margin-top: 15px;
+}
+
+
+/*============================= Login Page Custom Css End ======================================*/
+
+
+
+
+
+
+/* Default CSS Custom Begin */
+
+.page-header.navbar .page-logo .logo-default {
+    margin: 15px 10px 0 10px;
+}
+
+.page-sidebar {
+    margin-top: 10px;
+}
+
+.top-menu .navbar-nav>li>a {
+    height: 75px;
+    line-height: 40px;
+}
+
+.page-content-wrapper {
+    min-height: 815px;
+}
+/* Default CSS Custom End */
+
+
+/* Stock List Custom CSS Begin */
+
+.row.table-header{
+    margin-bottom: 10px;
+}
+
+table td .dropdown-menu.pull-left {
+    left: -120px;
+}
+
+
+/* Stock List Custom CSS End */
+
+
+
+/* Selda Receipt Css*/
+
+/*Gýda Bankasý Makbuz Css Kodlarý*/
+
+body {
+    margin: 0;
+	padding:0;
+}
+.name{
+    margin-top: 0.1cm;
+    margin-bottom: 0;
+    display: inline-block;
+}
+.date{
+    width: 3.75cm;
+    max-width: 3.75cm;
+    float: right;
+    text-align: left;
+    padding-bottom: 0.055cm;
+}
+.container-receipt {
+    width: 18.45cm;
+    display: inline-block;
+    color: #14578e;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+.container-receipt .row-receipt {
+    margin-top: 0.175cm;
+    width: 100%;
+}
+.container-receipt .row-receipt h1 {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+.container-receipt .row-receipt p {
+    padding-top: 0.2cm;
+    font-size: 11px;
+}
+.container-receipt .row-receipt table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+.container-receipt .row-receipt table,
+.container-receipt .row-receipt table td,
+.container-receipt .row-receipt table th {
+    border: 1px solid transparent;
+}
+.container-receipt .row-receipt table td {
+    padding: 0 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.row-receipt.first-row tr {
+    height: 1cm;
+}
+.row-receipt.first-row tr td.first {
+    width: 12.1cm;
+    max-width: 12.1cm;
+}
+.row-receipt.first-row tr td.second {
+    width: 1.43cm;
+    max-width: 1.43cm;
+}
+.row-receipt.first-row tr td.third {
+    width: 4.85cm;
+    max-width: 4.85cm;
+}
+.row-receipt.second-row tr {
+    height: 0.7cm;
+}
+.row-receipt.second-row tr td.first {
+    width: 4.15cm;
+    max-width: 4.15cm;
+}
+.row-receipt.second-row tr td.second {
+    width: 14.15cm;
+    max-width: 14.15cm;
+}
+.row-receipt.third-row  {
+    
+    height: 7.5cm;
+	
+}
+.row-receipt.third-row tr {
+    
+    /*height: 0.475cm;*/
+	
+}
+.row-receipt.third-row td {
+	border:1px solid #14578e!important;
+}
+.row-receipt.third-row tr th {
+    height: 0.3cm!important;
+}
+.row-receipt.third-row tr th.first {
+    width: 1.8cm;
+    max-width: 1.8cm;
+}
+.row-receipt.third-row tr th.second {
+    width: 9.9cm;
+    max-width: 9.9cm;
+}
+.row-receipt.third-row tr th.third {
+    width: 2.975cm;
+    max-width: 2.975cm;
+}
+.row.fourth-row {
+    width: 18.5cm;
+    height: 2.5cm;
+    bottom: 10px;
+    margin-left: 0.2cm;
+}
+.row.fourth-row p {
+    margin-top: 0.15cm;
+    margin-bottom: 0;
+    padding: 0;
+}
+.signature {
+    padding: 0;
+    margin: 0;
+}
+.signature > span {
+    float: left;
+    margin-top: 0;
+    padding: 0;
+    font-size: 11px;
+}
+.signature > span.first {
+    width: 3.7cm;
+    max-width: 3.7cm;
+    text-align: left;
+    margin-top: 0.2cm;
+    margin-left: 2cm;
+}
+.signature > span.second {
+    width: 5.1cm;
+    max-width: 5.1cm;
+    text-align: center;
+    margin-top: 0.05cm;
+}
+.signature > span.third {
+    width: auto;
+    text-align: center;
+    margin-top: 0.05cm;
+    margin-left: 3.2cm;
+}
+
+/*Gýda Bankasý Makbuz Css Kodlarý - END*/

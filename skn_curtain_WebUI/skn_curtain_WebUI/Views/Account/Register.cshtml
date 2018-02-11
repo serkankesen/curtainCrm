@@ -1,0 +1,58 @@
+﻿@model skn_curtain_WebUI.Models.RegisterViewModel
+           
+@{
+    ViewBag.Title = "Yeni Üye";
+    Layout = "~/Views/Account/_Layout.cshtml";
+    
+}
+
+@using (Html.BeginForm("register", "account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="group clearfix" id="addresses">
+        <div class="gleft">
+            @Html.AntiForgeryToken()
+            <h3>YENİ ÜYE</h3>
+            <hr /><br />
+            <span class="view-error">@ViewBag.ErrorMessage</span><br />
+            @Html.ValidationSummary(true)
+            <table cellspacing="0" cellpadding="0" class="form" id="billing">
+               
+                <tr>
+                    @Html.LabelFor(m => m.Email, new { @class = "lbl" })
+                </tr>
+                <tr>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "short", size = "30", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <br />
+                </tr>
+                <tr>
+                    @Html.LabelFor(m => m.Password, new { @class = "lbl" })
+                </tr>
+                <tr>
+                    @Html.PasswordFor(m => m.Password, new { @class = "short", size = "30", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    <br />
+                </tr>
+                <tr>
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "lbl" })
+                </tr>
+                <tr>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "short", size = "30", tabindex = "3" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    <br />
+                </tr>
+                      
+            </table>
+
+        </div>
+        <div style="clear: both"></div>
+
+        <div id="buttons">
+            <input id="commit-button" name="commit" tabindex="40" type="submit" value="ÜYE OL" />
+        </div>
+        
+        <small id="cancel-purchase"><a href="/">← Siteye geri dön</a></small>
+    </div>
+        <!-- /end addresses -->
+ 
+}

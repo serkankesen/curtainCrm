@@ -1,0 +1,90 @@
+﻿@using skn_curtain_WebUI.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Account/_Layout.cshtml";
+}
+
+<!-- BEGIN LOGIN FORM -->
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
+{
+    
+    <h3 class="form-title text-center text-uppercase"><img src="~/Assets/img/demor_logo.png" style="width:30%" /></h3>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        @Html.LabelFor(m => m.Email, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "Kullanıcı E-mail Adresi" })
+        </div>
+        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "Kullanıcı Şifresi" })
+        </div>
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-actions">
+        <div class="checkbox-inline">
+            <label class="checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checker" }) @Html.LabelFor(m => m.RememberMe)
+            </label>
+        </div>
+        <button type="button" class="btn btn-default pull-right" id="loginbtn">
+            Giriş <i class="fa fa-arrow-circle-right"></i>
+        </button>
+    </div>
+    <div class="row" id="subswrapper" style="display: none;">
+        <div class="col-md-12">
+            <div class="well block" id="subscontent"></div>
+        </div>
+    </div>
+    @*<div class="forget-password">
+        <h4>Şifrenizi mi unuttunuz ?</h4>
+        <p>
+            Şifrenizi sıfırlamak için, <a id="copyy" onclick="copyToClipboard()">buraya</a> tıklayın.
+        </p>
+    </div>*@
+}
+<!-- END LOGIN FORM -->
+@section Scripts{
+    <script type="text/javascript">
+        function copyToClipboard() {
+            window.prompt("Kopyalamak için: Ctrl+C, Enter", 'serkan@kesen.com');
+        }
+        $(document).ready(function () {
+            document.getElementById('Password').onkeydown = function (e) {
+                if (e.keyCode == 13)
+                    $('#loginbtn').click();
+            };
+            $('#loginbtn').click(function () {
+            
+
+                $('#loginbtn').html('<i class="fa fa-spinner fa-pulse"></i>');
+                $.ajax({
+                    type: "POST",
+                    data: $('.login-form').serialize(),
+                    success: function (data) {
+                        if (data.success) {
+                            window.location = data.data;
+                        } else {
+                            $('#loginbtn').html('Login <i class="fa fa-arrow-circle-right"></i>');
+                            $('#subswrapper').hide();
+                            $('div.alert').removeClass('display-hide');
+                            $('div.alert span').html(data.message);
+                        }
+                    },
+                    error: function () {
+
+                    }
+
+                });
+            });
+        });
+    </script>
+}

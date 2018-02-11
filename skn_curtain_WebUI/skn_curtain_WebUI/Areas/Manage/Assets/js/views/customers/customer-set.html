@@ -1,0 +1,67 @@
+﻿<div class="page-content-wrapper1">
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-product"></i>
+                <span class="caption-subject bold uppercase"> Yeni Müşteri Bilgisi Ekleme </span>
+            </div>
+            <div class="actions">
+                <div class="btn-group">
+                    <button class="btn green-haze  margin-right-10" ng-click="addinneed()"><i class="fa fa-check-circle-o"></i> Kaydet</button>
+                    <a href="#/customers" class="btn green-haze"><i class="fa  fa-list"></i> Müşteri Listesi</a>
+                </div>
+            </div>
+        </div>
+        <!-- End portlet-title -->
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                        <label>TC Kimlik No</label>
+                        <input class="form-control" type="number" placeholder="TC Kimlik No" maxlength="11" ng-model="inneed[0].IdentityNo" />
+                    </div>
+                    <!-- End form-group -->
+                    <div class="form-group">
+                        <label>Ad</label>
+                        <input class="form-control" type="text" placeholder="Ad" ng-model="inneed[0].UserName" buyukyaz />
+                    </div>
+                    <div class="form-group">
+                        <label>Soyad</label>
+                        <input class="form-control" type="text" placeholder="Soyad" ng-model="inneed[0].UserSurName" buyukyaz />
+                    </div>
+                    <!-- End form-group -->
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input class="form-control" type="tel" placeholder="Telefon" ng-model="inneed[0].Phone" />
+                    </div>
+                    <!-- End form-group -->
+                    <div class="form-group">
+                        <label>Notlar</label>
+                        <textarea class="form-control" placeholder="Not" rows="3" ng-model="inneed[0].Notes"></textarea>
+                    </div>
+
+                    <!-- End form-group -->
+                    <div class="form-group">
+                        <label>Mahalle</label>
+                        <select class="form-control" ng-model="inneed[0].DistrictId" ng-options="foo.DistrictId as foo.Name for foo in district">
+                            <option value="" disabled>Seçiniz</option>
+
+                        </select>
+                    </div>
+                    <!-- End form-group -->
+                    <div class="form-group">
+                        <label>Açık Adres</label>
+                        <textarea class="form-control" placeholder="Adres" rows="3" ng-model="inneed[0].Address"></textarea>
+                    </div>
+                </div>
+             
+                <!-- End form-horizontal -->
+            </div>
+            <!-- End row -->
+        </div>
+        <!-- End portlet-body -->
+    </div>
+    <!-- End portlet -->
+    <!--div eklenecek-->
+    <!-- End portlet grey -->
+</div>
