@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace skn_curtain_Data.Entities
 {
@@ -11,9 +12,11 @@ namespace skn_curtain_Data.Entities
         public string Description { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-
+        public bool isActive { get; set; }
         public int AddressId { get; set; }
-        [ForeignKey("AddressId")]
-        public virtual Address Addresses { get; set; }
+        public virtual ICollection<CurtainInfoes> CurtainInfoes { get; set; }
+
+        //[ForeignKey("AddressId")]
+        //public virtual Address Addresses { get; set; }
     }
 }

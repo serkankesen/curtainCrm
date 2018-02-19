@@ -1,0 +1,76 @@
+﻿
+<div>
+    <div class="col-xs-12">
+        <ul ng-if="paging.totalItems >= 10" class="pagination" style="width:100%">
+            <li>
+                <ul class="pagination">
+                    <li class="margin-top-10">
+                        <div class="btn-group clearfix">
+                            <button type="button" ng-click="getList(1,10)" ng-class="{active:paging.pageSize===10}" class="btn btn-default btn-sm">10</button>
+                            <button type="button" ng-if="paging.totalItems >= 25" ng-click="getList(1,25)" ng-class="{active:paging.pageSize===25}" class="btn btn-default btn-sm">25</button>
+                            <button type="button" ng-if="paging.totalItems >= 50" ng-click="getList(1,50)" ng-class="{active:paging.pageSize===50}" class="btn btn-default btn-sm">50</button>
+                            <button type="button" ng-if="paging.totalItems >= 75" ng-click="getList(1,75)" ng-class="{active:paging.pageSize===75}" class="btn btn-default btn-sm">75</button>
+                            <button type="button" ng-if="paging.totalItems >= 100" ng-click="getList(1,100)" ng-class="{active:paging.pageSize===100}" class="btn btn-default btn-sm">100</button>
+                            <button type="button" ng-if="paging.totalItems >= 200" ng-click="getList(1,200)" ng-class="{active:paging.pageSize===200}" class="btn btn-default btn-sm">200</button>
+                        </div>
+                    </li>
+                </ul>
+                <!--<ul class="pagination" style="margin-left: 25px;">
+                    <li>
+                        {{paging.totalItems}}
+                        Toplam <b>{{numbers.length}}</b> sayfa içerisinde <b>{{paging.currentPage}}.</b> sayfayı görmektesiniz
+                    </li>
+                </ul>-->
+                <ul class="pagination pull-right">
+                    <li ng-if="first.isShow">
+                        <a href="javascript:" ng-click="getList(first,paging.pageSize)">
+                            <i class="fa fa-angle-double-left"></i>
+                        </a>
+                    </li>
+
+
+                    <li ng-if="prev.isShow">
+                        <a href="javascript:" ng-click="getList(prev,paging.pageSize)">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    </li>
+
+                    <li ng-if="prevStep.isShow">
+                        <a href="javascript:" ng-click="getList(prevStep,paging.pageSize)">
+                            ...
+                        </a>
+                    </li>
+
+                    <li ng-class="{active:paging.currentPage===item.value}" ng-repeat="item in numbers ">
+                        <a href="javascript:" ng-click="getList(item,paging.pageSize)">
+                            {{item.value}}
+                        </a>
+                    </li>
+
+                    <!--<li ng-if="nextStep.isShow">
+                        <a href="javascript:" ng-click="getList(nextStep,paging.pageSize)">
+                            ...
+                        </a>
+                    </li>-->
+                    <!--<li ng-if="last.isShow">
+                        <a href="javascript:" ng-click="getList(lastNumber,paging.pageSize)">
+                            {{totalPages}}
+                        </a>
+                    </li>-->
+
+                    <li ng-if="next.isShow">
+                        <a href="javascript:" ng-click="getList(next,paging.pageSize)">
+                            <i class="fa fa-angle-double-right fa-angle-right"></i>
+                        </a>
+                    </li>
+
+
+                    <li ng-if="last.isShow">
+                        <a href="javascript:" ng-click="getList(last,paging.pageSize)">
+                            <i class="fa fa-angle-double-right"></i>
+                        </a>
+                    </li>
+                </ul>
+        </ul>
+    </div>
+</div>

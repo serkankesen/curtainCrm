@@ -1,7 +1,7 @@
-﻿using System;
+﻿using skn_curtain_Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using skn_curtain_Data.Entities;
 
 namespace skn_curtain_Core.Repos
 {
@@ -9,42 +9,72 @@ namespace skn_curtain_Core.Repos
     {
         public object getCustomerById(int id)
         {
-            return db.Customer.FirstOrDefault(x => x.ID == id);
+            return db.Customer.Where(x => x.ID == id).Select(x=> new {
+                x.AddressId,
+                CurtainInfoes = x.CurtainInfoes.Where(m=>!m.Status).Select(a=> new {
+                    a.ID,
+                    a.Room,
+                    a.WidthxHeight,
+                    a.Height,
+                    a.Status,
+                    Columns = a.Columns.Where(m=>!m.Status).Select(k=> new
+                    {
+                        k.ID,
+                        k.ColumnWidth,
+                        k.ColumnName,
+                        k.Status
+                    })
+                }),
+                x.Description,
+                x.IdentityNo,
+                x.Email,x.ID,x.Phone,x.UserName,x.UserSurname,x.WorkTitle,x.Editor
+            }).FirstOrDefault();
         }
 
         public Tuple<IEnumerable<object>, int> getCustomers(int page, int pageSize)
         {
             var list = db.Customer.AsEnumerable();
             var listcount = list.Count();          
-            list = list.OrderBy(x => x.UserName).Skip((page - 1) * pageSize).Take(pageSize);
+            list = list.Where(x=>!x.isActive).OrderBy(x => x.UserName).Skip((page - 1) * pageSize).Take(pageSize);
             return new Tuple<IEnumerable<object>, int>(list, listcount);
         }
 
         public bool remove(int id)
         {
-            Delete<Customer>(id);
+            var data = db.Customer.Where(x => x.ID == id).FirstOrDefault();
+            data.isActive = false;
+            Save();
+
+            return true;
+        }
+
+        public bool removeCurtain(int id)
+        {
+            var data = db.CurtainInfoes.Where(x => x.ID == id).FirstOrDefault();
+            data.Status = false;
             Save();
             return true;
         }
 
-        public bool setCustomer(Customer model)
+        public bool removeColumn(int id)
+        {
+            var data = db.Columns.Where(x => x.ID == id).FirstOrDefault();
+            data.Status = true;
+            Save();
+            return true;
+        }
+
+        public int setCustomer(Customer model)
         {
             try
             {
-                if (model.ID > 0)
-                {
-                    Update(model);
-                }
-                else
-                {
-                    Create(model);
-                }
+                Create(model);
                 Save();
-                return true;
+                return (int)model.ID;
             }
             catch (Exception)
             {
-                return false;
+                return 0;
             }
         }
     }
