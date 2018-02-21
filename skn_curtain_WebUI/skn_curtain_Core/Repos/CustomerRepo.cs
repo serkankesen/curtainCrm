@@ -31,12 +31,14 @@ namespace skn_curtain_Core.Repos
             }).FirstOrDefault();
         }
 
-        public Tuple<IEnumerable<object>, int> getCustomers(int page, int pageSize)
+        public Tuple<IEnumerable<object>, int> getCustomers(string search, int page, int pageSize)
         {
-            var list = db.Customer.AsEnumerable();
-            var listcount = list.Count();          
-            list = list.Where(x=>!x.isActive).OrderBy(x => x.UserName).Skip((page - 1) * pageSize).Take(pageSize);
-            return new Tuple<IEnumerable<object>, int>(list, listcount);
+            var list = db.Customer.AsEnumerable().Where(x=>!x.isActive);
+            if (!string.IsNullOrEmpty(search))            
+                list = list.Where(s => s.IdentityNo.ToLower().Contains(search.ToLower()) || s.UserName.ToLower().Contains(search.ToLower()) || s.UserSurname.ToLower().Contains(search.ToLower()) || 
+                (s.UserName+" "+s.UserSurname).ToLower().Contains(search.ToLower()) || s.Phone.ToLower().Contains(search.ToLower()) || s.Email.ToLower().Contains(search.ToLower()));    
+            list = list.OrderBy(x => x.UserName).Skip((page - 1) * pageSize).Take(pageSize);
+            return new Tuple<IEnumerable<object>, int>(list, list.Count());
         }
 
         public bool remove(int id)

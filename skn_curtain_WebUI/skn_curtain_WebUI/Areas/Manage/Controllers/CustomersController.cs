@@ -20,17 +20,17 @@ namespace skn_curtain_WebUI.Areas.Manage.Controllers
             return View();
         }
 
-        public JsonResult GetAllCustomers(int? totalItems, int page = 1, int pageSize = pageSize)
+        public JsonResult GetAllCustomers(string Search, int? totalItems, int page = 1, int pageSize = pageSize)
         {
             return Json(new
             {
-                data = _repo.getCustomers(page, pageSize).Item1,
+                data = _repo.getCustomers(Search, page, pageSize).Item1,
                 paging = new InitializerModels.PageInfo
                 {
                     totalItems =
                         totalItems.HasValue
                             ? (int)totalItems
-                            : _repo.getCustomers(page, pageSize).Item2,
+                            : _repo.getCustomers(Search, page, pageSize).Item2,
                     currentPage = page,
                     pageSize = pageSize
                 }

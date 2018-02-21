@@ -22,6 +22,20 @@ BackOffice.controller('CustomersController', function ($rootScope, $scope, $http
         });
     }
 
+
+    $scope.search = () => {
+        $http({
+            method: 'get',
+            url: 'manage/Customers/GetAllCustomers',
+            params: { search: $scope.text }
+        }).success(function (data, status, headers, config) {
+            $scope.customers = data.data;
+            $scope.paging = data.paging;
+            console.log(data.paging);
+        }).error(function (data, status, headers, config) {
+        });
+    }
+
     $http({
         method: "get",
         url: "manage/Customers/GetAllCustomers",

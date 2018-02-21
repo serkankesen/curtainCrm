@@ -6,7 +6,7 @@ namespace skn_curtain_Core
 {
     public interface ICustomer : ICRUD
     {
-        Tuple<IEnumerable<object>, int> getCustomers(int page, int pageSize);
+        Tuple<IEnumerable<object>, int> getCustomers(string search, int page, int pageSize);
         int setCustomer(Customer model);
         object getCustomerById(int id);
         bool remove(int id);
