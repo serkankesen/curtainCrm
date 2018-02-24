@@ -12,7 +12,7 @@ namespace skn_curtain_Data.Entities
         public string WidthxHeight { get; set; }
         public string Picture { get; set; }
         public bool Status { get; set; }
-        public int CustomerId { get; set; }
+        public long CustomerId { get; set; }
         public virtual ICollection<Columns> Columns { get; set; }
     }
 }

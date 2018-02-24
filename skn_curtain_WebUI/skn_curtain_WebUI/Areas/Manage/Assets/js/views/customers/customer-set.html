@@ -18,26 +18,26 @@
                 <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
                         <label>TC Kimlik No</label>
-                        <input class="form-control" type="number" placeholder="TC Kimlik No" maxlength="11" ng-model="model.IdentityNo" />
+                        <input class="form-control input-sm" type="number" placeholder="TC Kimlik No" maxlength="11" ng-model="model.IdentityNo" />
                     </div>
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>Ad</label>
-                        <input class="form-control" type="text" placeholder="Ad" ng-model="model.UserName" buyukyaz />
+                        <input class="form-control input-sm" type="text" placeholder="Ad" ng-model="model.UserName" buyukyaz />
                     </div>
                     <div class="form-group">
                         <label>Soyad</label>
-                        <input class="form-control" type="text" placeholder="Soyad" ng-model="model.UserSurname" buyukyaz />
+                        <input class="form-control input-sm" type="text" placeholder="Soyad" ng-model="model.UserSurname" buyukyaz />
                     </div>
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>Telefon</label>
-                        <input class="form-control" type="tel" placeholder="Telefon" ng-model="model.Phone" />
+                        <input class="form-control input-sm" type="tel" placeholder="Telefon" ng-model="model.Phone" />
                     </div>
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" type="email" placeholder="Email" rows="3" ng-model="model.Email"/>
+                        <input class="form-control input-sm" type="email" placeholder="Email" rows="3" ng-model="model.Email"/>
                     </div>
 
                 </div>
@@ -46,26 +46,26 @@
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>İl</label>
-                        <select class="form-control" ng-model="customer[0].DistrictId" ng-options="foo.DistrictId as foo.Name for foo in district">
+                        <select class="form-control input-sm" ng-model="model.CityId" ng-options="foo.CityId as foo.Name for foo in city" ng-change="getCity()" required>
                             <option value="" disabled>Seçiniz</option>
                         </select>
                     </div>
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>İlçe</label>
-                        <select class="form-control" ng-model="customer[0].DistrictId" ng-options="foo.DistrictId as foo.Name for foo in district">
+                        <select class="form-control input-sm" ng-model="model.CountyId" ng-options="foo.CountyId as foo.Name for foo in county">
                             <option value="" disabled>Seçiniz</option>
                         </select>
                     </div>
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>Açık Adres</label>
-                        <textarea class="form-control" placeholder="Adres" rows="3" ng-model="customer[0].Address"></textarea>
+                        <textarea class="form-control input-sm" placeholder="Adres" rows="3" ng-model="model.OpenAddress"></textarea>
                     </div>
                     <!-- End form-group -->
                     <div class="form-group">
                         <label>Notlar</label>
-                        <textarea class="form-control" placeholder="Not" rows="3" ng-model="customer[0].Notes"></textarea>
+                        <textarea class="form-control input-sm" placeholder="Not" rows="3" ng-model="model.Description"></textarea>
                     </div>
                 </div>
                 <!-- End form-horizontal -->
@@ -121,24 +121,24 @@
                                     </div>
                                     <div class="portlet-body">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Oda İsmi Giriniz" ng-model="model.CurtainInfoes[$index].Room" />
+                                            <input class="form-control input-sm" type="text" placeholder="Oda İsmi Giriniz" ng-model="model.CurtainInfoes[$index].Room" />
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control" type="number" placeholder="Yükseklik Giriniz" ng-model="model.CurtainInfoes[$index].Height" />
+                                            <input class="form-control input-sm" type="number" placeholder="Yükseklik Giriniz" ng-model="model.CurtainInfoes[$index].Height" />
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" placeholder="Bilgi Giriniz" ng-model="model.CurtainInfoes[$index].Description" />
+                                            <textarea class="form-control input-sm" placeholder="Bilgi Giriniz" ng-model="model.CurtainInfoes[$index].Description" />
                                         </div>
                                         <div class="row horizantal-box" ng-repeat="sitem in model.CurtainInfoes[$index].Columns">
                                             <button class="remove" ng-click="splicese1($index, item.sayi)"><i class="fa fa-times-circle"></i></button>
                                             <input type="hidden" ng-model="sitem.isActive" value="true" />
                                             <div class="form-group col-xs-12 col-sm-6">
                                                 <label>Bölge</label>
-                                                <input class="form-control " type="text" ng-model="sitem.ColumnName" />
+                                                <input class="form-control input-sm" type="text" ng-model="sitem.ColumnName" />
                                             </div>
                                             <div class="form-group col-xs-12 col-sm-6">
                                                 <label>Boyut</label>
-                                                <input class="form-control" type="number" ng-model="sitem.ColumnWidth" />
+                                                <input class="form-control input-sm" type="number" ng-model="sitem.ColumnWidth" />
                                             </div>
 
                                         </div>

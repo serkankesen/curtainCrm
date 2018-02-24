@@ -30,7 +30,6 @@ namespace skn_curtain_Core
         public DbSet<CurtainInfoes> CurtainInfoes { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<City> City { get; set; }
-        public DbSet<Country> Country { get; set; }
         public DbSet<County> County { get; set; }
         public DbSet<Columns> Columns { get; set; }
 

@@ -55,6 +55,20 @@ namespace skn_curtain_WebUI.Areas.Manage.Controllers
             }
         }
 
+        public JsonResult EditCustomer(Customer model)
+        {
+            try
+            {
+                return Json(_repo.setCustomer(model), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = 501;
+                throw;
+            }
+        }
+
+
         public JsonResult RemoveMove(int id)
         {
             return Json(_repo.remove(id), JsonRequestBehavior.AllowGet);
@@ -69,6 +83,17 @@ namespace skn_curtain_WebUI.Areas.Manage.Controllers
         {
             return Json(_repo.removeColumn(id), JsonRequestBehavior.AllowGet);
         }
-        
+
+
+        public JsonResult GetAllCity()
+        {
+            return Json(_repo.getAllCity(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCountyByCity(int id)
+        {
+            return Json(_repo.getCountyByCity(id), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

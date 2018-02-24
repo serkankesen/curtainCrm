@@ -12,7 +12,8 @@ namespace skn_curtain_Core
         bool remove(int id);
         bool removeCurtain(int id);
         bool removeColumn(int id);
-
+        object getAllCity();
+        object getCountyByCity(int id);
     }
 
     public interface ICurtainInfoes :ICRUD

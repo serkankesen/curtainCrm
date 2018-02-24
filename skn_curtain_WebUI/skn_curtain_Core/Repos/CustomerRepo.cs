@@ -11,23 +11,30 @@ namespace skn_curtain_Core.Repos
         {
             return db.Customer.Where(x => x.ID == id).Select(x=> new {
                 x.AddressId,
+                x.CityId,
+                x.CountyId,
+                x.OpenAddress,
+                x.ID,
                 CurtainInfoes = x.CurtainInfoes.Where(m=>!m.Status).Select(a=> new {
                     a.ID,
                     a.Room,
                     a.WidthxHeight,
+                    a.Description,
                     a.Height,
                     a.Status,
+                    a.CustomerId,
                     Columns = a.Columns.Where(m=>!m.Status).Select(k=> new
                     {
                         k.ID,
                         k.ColumnWidth,
                         k.ColumnName,
+                        k.CurtainInfoesId,
                         k.Status
                     })
                 }),
                 x.Description,
                 x.IdentityNo,
-                x.Email,x.ID,x.Phone,x.UserName,x.UserSurname,x.WorkTitle,x.Editor
+                x.Email,x.Phone,x.UserName,x.UserSurname,x.WorkTitle,x.Editor
             }).FirstOrDefault();
         }
 
@@ -44,7 +51,7 @@ namespace skn_curtain_Core.Repos
         public bool remove(int id)
         {
             var data = db.Customer.Where(x => x.ID == id).FirstOrDefault();
-            data.isActive = false;
+            data.isActive = true;
             Save();
 
             return true;
@@ -53,7 +60,7 @@ namespace skn_curtain_Core.Repos
         public bool removeCurtain(int id)
         {
             var data = db.CurtainInfoes.Where(x => x.ID == id).FirstOrDefault();
-            data.Status = false;
+            data.Status = true;
             Save();
             return true;
         }
@@ -70,14 +77,57 @@ namespace skn_curtain_Core.Repos
         {
             try
             {
-                Create(model);
-                Save();
+                if (model.ID > 0)
+                {
+                    if(model.CurtainInfoes != null)
+                    foreach (var item in model.CurtainInfoes)
+                    {
+                        if (item.ID > 0)
+                        {
+                            
+                            if(item.Columns!=null)
+                            { 
+                                foreach (var column in item.Columns)
+                                {
+                                    if (column.ID > 0)
+                                    {
+                                        Update(column);
+                                    }
+                                    else
+                                        Create(column);
+                                }
+                            }
+                                Update(item);
+                        }
+                        else
+                            Create(item);
+                    }
+                    Update(model);
+                    Save();
+                }
+                else
+                {
+                    Create(model);
+                    Save();
+                }
                 return (int)model.ID;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return 0;
             }
         }
+
+        public object getAllCity()
+        {
+            return db.City;
+        }
+
+        public object getCountyByCity(int id)
+        {
+            return db.County.Where(x => x.CityId == id);
+        }
     }
 }
+
+
