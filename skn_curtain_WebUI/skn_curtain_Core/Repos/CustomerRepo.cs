@@ -9,13 +9,17 @@ namespace skn_curtain_Core.Repos
     {
         public object getCustomerById(int id)
         {
-            return db.Customer.Where(x => x.ID == id).Select(x=> new {
+            return db.Customer.Where(x => x.ID == id).Select(x => new
+            {
+                x.City,
+                x.County,
                 x.AddressId,
                 x.CityId,
                 x.CountyId,
                 x.OpenAddress,
                 x.ID,
-                CurtainInfoes = x.CurtainInfoes.Where(m=>!m.Status).Select(a=> new {
+                CurtainInfoes = x.CurtainInfoes.Where(m => !m.Status).Select(a => new
+                {
                     a.ID,
                     a.Room,
                     a.WidthxHeight,
@@ -23,28 +27,40 @@ namespace skn_curtain_Core.Repos
                     a.Height,
                     a.Status,
                     a.CustomerId,
-                    Columns = a.Columns.Where(m=>!m.Status).Select(k=> new
+                    Columns = a.Columns.Where(m => !m.Status).Select(k => new
                     {
                         k.ID,
                         k.ColumnWidth,
                         k.ColumnName,
                         k.CurtainInfoesId,
+                        k.Description,
                         k.Status
                     })
                 }),
                 x.Description,
                 x.IdentityNo,
-                x.Email,x.Phone,x.UserName,x.UserSurname,x.WorkTitle,x.Editor
+                x.Email,
+                x.Phone,
+                x.UserName,
+                x.UserSurname,
+                x.WorkTitle,
+                x.Editor
             }).FirstOrDefault();
         }
 
         public Tuple<IEnumerable<object>, int> getCustomers(string search, int page, int pageSize)
         {
-            var list = db.Customer.AsEnumerable().Where(x=>!x.isActive);
-            if (!string.IsNullOrEmpty(search))            
-                list = list.Where(s => s.IdentityNo.ToLower().Contains(search.ToLower()) || s.UserName.ToLower().Contains(search.ToLower()) || s.UserSurname.ToLower().Contains(search.ToLower()) || 
-                (s.UserName+" "+s.UserSurname).ToLower().Contains(search.ToLower()) || s.Phone.ToLower().Contains(search.ToLower()) || s.Email.ToLower().Contains(search.ToLower()));    
-            list = list.OrderBy(x => x.UserName).Skip((page - 1) * pageSize).Take(pageSize);
+            var list = db.Customer.AsEnumerable().Where(x => !x.isActive);
+            if (!string.IsNullOrEmpty(search))
+                list = list.Where(s => s.IdentityNo.ToLower().Contains(search.ToLower()) || 
+                s.UserName.ToLower().Contains(search.ToLower()) || 
+                s.UserSurname.ToLower().Contains(search.ToLower()) ||
+                (s.UserName + " " + s.UserSurname).ToLower().Contains(search.ToLower()) || 
+                s.Phone.ToLower().Contains(search.ToLower()) || 
+                s.City.ToLower().Contains(search.ToLower()) ||
+                s.County.ToLower().Contains(search.ToLower()) ||
+                s.Email.ToLower().Contains(search.ToLower()));
+            list = list.OrderBy(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
             return new Tuple<IEnumerable<object>, int>(list, list.Count());
         }
 
@@ -79,29 +95,29 @@ namespace skn_curtain_Core.Repos
             {
                 if (model.ID > 0)
                 {
-                    if(model.CurtainInfoes != null)
-                    foreach (var item in model.CurtainInfoes)
-                    {
-                        if (item.ID > 0)
+                    if (model.CurtainInfoes != null)
+                        foreach (var item in model.CurtainInfoes)
                         {
-                            
-                            if(item.Columns!=null)
-                            { 
-                                foreach (var column in item.Columns)
+                            if (item.ID > 0)
+                            {
+
+                                if (item.Columns != null)
                                 {
-                                    if (column.ID > 0)
+                                    foreach (var column in item.Columns)
                                     {
-                                        Update(column);
+                                        if (column.ID > 0)
+                                        {
+                                            Update(column);
+                                        }
+                                        else
+                                            Create(column);
                                     }
-                                    else
-                                        Create(column);
                                 }
-                            }
                                 Update(item);
+                            }
+                            else
+                                Create(item);
                         }
-                        else
-                            Create(item);
-                    }
                     Update(model);
                     Save();
                 }

@@ -13,6 +13,8 @@ namespace skn_curtain_Data.Entities
         public string Email { get; set; }
         public string Phone { get; set; }
         public bool isActive { get; set; }
+        public string City { get; set; }
+        public string County { get; set; }
         public int CountyId { get; set; }
         public int CityId { get; set; }
         public string OpenAddress { get; set; }

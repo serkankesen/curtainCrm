@@ -3,8 +3,9 @@
 
 /*============================= Login Page Custom Css Begin ======================================*/
 
-.section-login{
-    padding: 10% 0 0 40px;
+.section-login {
+    padding: 10% 0 40px 0;
+    min-height: 420px;
 }
 
 .section-login .login {

@@ -30,11 +30,11 @@
         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
     </div>
     <div class="form-actions">
-        <div class="checkbox-inline">
+        @*<div class="checkbox-inline">
             <label class="checkbox">
                 @Html.CheckBoxFor(m => m.RememberMe, new { @class = "checker" }) @Html.LabelFor(m => m.RememberMe)
             </label>
-        </div>
+        </div>*@
         <button type="button" class="btn btn-default pull-right" id="loginbtn">
             Giriş <i class="fa fa-arrow-circle-right"></i>
         </button>
@@ -63,9 +63,9 @@
                     $('#loginbtn').click();
             };
             $('#loginbtn').click(function () {
-            
+                $('#loginbtn').html('<img src="/assets/img/loading-spinner-grey.gif" />');
 
-                $('#loginbtn').html('<i class="fa fa-spinner fa-pulse"></i>');
+                //$('#loginbtn').html('<i class="fa fa-spinner fa-pulse"></i>');
                 $.ajax({
                     type: "POST",
                     data: $('.login-form').serialize(),

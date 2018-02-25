@@ -68,7 +68,7 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
         Metronic.initAjax();
     });
     $scope.model = { CurtainInfoes: [{ Columns: [] }] };
-
+    $scope.showCommit = false;
    
     $http({
         method: 'get',
@@ -90,6 +90,8 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
     
     $scope.save = function () {
         $scope.condition = false;
+        $scope.model.City = $scope.city.find(e => e.CityId === $scope.model.CityId).Name;
+        $scope.model.County = $scope.county.find(e => e.CountyId === $scope.model.CountyId).Name;
         $http({
             method: 'post',
             url: 'manage/Customers/AddCustomer',
@@ -115,6 +117,7 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
     $scope.e1 = function () {
         $scope.model.CurtainInfoes.push({ sayi: ie1, yeni: 1, isActive: true, Columns: [] });
         ie1 += 1;
+        $scope.showCommit = true;
     }
 
     $scope.splice = function (i, id) {
@@ -149,6 +152,7 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         Metronic.initAjax();
     });
     $scope.model = { CurtainInfoes: [{ Columns: [] }] };
+    $scope.showCommit = false;
     $http({
         method: 'get',
         url: 'manage/Customers/GetAllCity',
@@ -157,7 +161,6 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
     });
 
     $scope.getCity = () => {
-        debugger
         $http({
             method: 'get',
             url: 'manage/Customers/GetCountyByCity',
@@ -168,6 +171,9 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
     }
     $scope.save = function () {
         $scope.condition = false;
+        //$scope.model.OpenAddress = $scope.model.OpenAddress + " - " + $scope.county.find(e => e.CountyId === $scope.model.CountyId).Name + " - " + $scope.city.find(e => e.CityId===$scope.model.CityId).Name;
+        $scope.model.City = $scope.city.find(e => e.CityId === $scope.model.CityId).Name;
+        $scope.model.County = $scope.county.find(e => e.CountyId === $scope.model.CountyId).Name;
         angular.forEach($scope.model.CurtainInfoes, function (e) {
             if (!e.CustomerId)
                 e.CustomerId = $scope.model.ID
@@ -196,7 +202,6 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
 
 
     $scope.splicese1 = function (i, value,colunmIndex , id) {
-        debugger
         $scope.model.CurtainInfoes[value].Columns.splice(i, 1);
         if (id != null) {
             $http({
@@ -213,7 +218,6 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
     }
 
     $scope.splice = function (i, id, sayi) {
-        debugger
         sayi != null && $scope.model.CurtainInfoes.splice(i, 1);
         if (id != null) {
             $http({
@@ -231,13 +235,11 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
     $scope.ie1 = 0;
     $scope.ise1 = 0;
     $scope.e1 = function () {
-        debugger
         $scope.model.CurtainInfoes.push({ sayi: $scope.ie1, yeni: 1, isActive: true, Columns: [] });
         $scope.ie1 += 1;
     }
 
     $scope.e1clone = function (value) {
-        debugger
         $scope.model.CurtainInfoes[value].Columns.push({ sayi: $scope.ise1, yeni: 1 });
         $scope.ise1 = +1;
     }
@@ -248,6 +250,7 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         params: { id: $state.params.id }
     }).success(function (data) {
         angular.forEach(data.CurtainInfoes, function (e) {
+            $scope.showCommit = true;
             e.sayi = $scope.ie1;
             $scope.ie1 += 1;
             angular.forEach(e.Columns, function (f) {
