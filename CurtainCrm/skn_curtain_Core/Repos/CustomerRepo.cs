@@ -119,6 +119,18 @@ namespace skn_curtain_Core.Repos
                             if (item.ID > 0)
                             {
 
+                                if (item.Pictures != null)
+                                {
+                                    foreach (var column in item.Pictures)
+                                    {
+                                        if (picture.ID > 0)
+                                        {
+                                            Update(picture);
+                                        }
+                                        else
+                                            Create(picture);
+                                    }
+                                }
                                 if (item.Columns != null)
                                 {
                                     foreach (var column in item.Columns)
