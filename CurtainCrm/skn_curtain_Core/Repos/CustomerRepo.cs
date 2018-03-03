@@ -52,14 +52,15 @@ namespace skn_curtain_Core.Repos
         {
             var list = db.Customer.AsEnumerable().Where(x => !x.isActive);
             if (!string.IsNullOrEmpty(search))
-                list = list.Where(s => s.IdentityNo.ToLower().Contains(search.ToLower()) || 
-                s.UserName.ToLower().Contains(search.ToLower()) || 
-                s.UserSurname.ToLower().Contains(search.ToLower()) ||
-                (s.UserName + " " + s.UserSurname).ToLower().Contains(search.ToLower()) || 
-                s.Phone.ToLower().Contains(search.ToLower()) || 
-                s.City.ToLower().Contains(search.ToLower()) ||
-                s.County.ToLower().Contains(search.ToLower()) ||
-                s.Email.ToLower().Contains(search.ToLower()));
+                list = list.Where(s => s.IdentityNo != null && s.IdentityNo.ToLower().Contains(search.ToLower()) ||
+                s.UserName != null && s.UserName.ToLower().Contains(search.ToLower()) ||
+                s.UserSurname != null && s.UserSurname.ToLower().Contains(search.ToLower()) ||
+                s.UserName != null && s.UserSurname != null && (s.UserName + " " + s.UserSurname).ToLower().Contains(search.ToLower()) ||
+                s.Phone != null && s.Phone.ToLower().Contains(search.ToLower()) ||
+                s.City != null && s.City.ToLower().Contains(search.ToLower()) ||
+                s.OpenAddress != null && s.OpenAddress.ToLower().Contains(search.ToLower()) ||
+                s.County != null && s.County.ToLower().Contains(search.ToLower()) ||
+                s.Email != null && s.Email.ToLower().Contains(search.ToLower()));
             list = list.OrderBy(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
             return new Tuple<IEnumerable<object>, int>(list, list.Count());
         }
@@ -72,7 +73,8 @@ namespace skn_curtain_Core.Repos
 
             return true;
         }
-
+        // emre_akbal@hotmail.com
+        // Tel: 5302209358
         public bool removeCurtain(int id)
         {
             var data = db.CurtainInfoes.Where(x => x.ID == id).FirstOrDefault();
