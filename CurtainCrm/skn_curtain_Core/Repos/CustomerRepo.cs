@@ -27,6 +27,16 @@ namespace skn_curtain_Core.Repos
                     a.Height,
                     a.Status,
                     a.CustomerId,
+                    Pictures = a.Pictures.Where(m => !m.Status).Select(k => new
+                    {
+                       k.ID,
+                       k.FileName,
+                       k.Path,
+                       k.Size
+                       k.Description,
+                       k.Status,
+                       k.CurtainInfoesId
+                    })
                     Columns = a.Columns.Where(m => !m.Status).Select(k => new
                     {
                         k.ID,
@@ -90,6 +100,14 @@ namespace skn_curtain_Core.Repos
             Save();
             return true;
         }
+        
+        public bool removePicture(int id)
+        {
+            var data = db.Pictures.Where(x => x.ID == id).FirstOrDefault();
+            data.Status = true;
+            Save();
+            return true;
+        }
 
         public int setCustomer(Customer model)
         {
@@ -103,6 +121,18 @@ namespace skn_curtain_Core.Repos
                             if (item.ID > 0)
                             {
 
+                                if (item.Pictures != null)
+                                {
+                                    foreach (var column in item.Pictures)
+                                    {
+                                        if (picture.ID > 0)
+                                        {
+                                            Update(picture);
+                                        }
+                                        else
+                                            Create(picture);
+                                    }
+                                }
                                 if (item.Columns != null)
                                 {
                                     foreach (var column in item.Columns)

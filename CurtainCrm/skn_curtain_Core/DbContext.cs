@@ -32,9 +32,6 @@ namespace skn_curtain_Core
         public DbSet<City> City { get; set; }
         public DbSet<County> County { get; set; }
         public DbSet<Columns> Columns { get; set; }
-
-
-
-     
+        public DbSet<Pictures> Pictures { get; set; }     
     }
 }
