@@ -76,6 +76,10 @@
   <ItemGroup>
     <Compile Include="DbContext.cs" />
     <Compile Include="Interfaces.cs" />
+    <Compile Include="Migrations\201803041943138_add_name.cs" />
+    <Compile Include="Migrations\201803041943138_add_name.Designer.cs">
+      <DependentUpon>201803041943138_add_name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -87,6 +91,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repos\UserRepo.cs" />
+    <Compile Include="Properties\System.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>System.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -95,12 +104,21 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Properties\System.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>System.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\skn_curtain_Data\skn_curtain_Data.csproj">
       <Project>{ad29a407-606a-4417-82d4-6ea789ec3fc1}</Project>
       <Name>skn_curtain_Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803041943138_add_name.resx">
+      <DependentUpon>201803041943138_add_name.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -160,15 +160,21 @@
     <Content Include="Areas\Manage\Assets\js\app.module.js" />
     <Content Include="Areas\Manage\Assets\js\app.route.js" />
     <Content Include="Areas\Manage\Assets\js\app.service.js" />
+    <Content Include="Areas\Manage\Assets\js\app\global\libraryaddmodal.html" />
     <Content Include="Areas\Manage\Assets\js\directives.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\angular-cache-buster.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\angular-checklist.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\angular-confirm.js" />
+    <Content Include="Areas\Manage\Assets\js\vendor\angular-file-upload.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\angular-ui-router.min.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\angular.min.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\bootstrap.min.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\demo.js" />
+    <Content Include="Areas\Manage\Assets\js\vendor\jquery-1.10.2.min.js" />
+    <Content Include="Areas\Manage\Assets\js\vendor\jquery.fileDownload.js" />
+    <Content Include="Areas\Manage\Assets\js\vendor\jquery.fileupload.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\jquery.min.js" />
+    <Content Include="Areas\Manage\Assets\js\vendor\jquery.mousewheel.pack.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\layout.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\metronic.js" />
     <Content Include="Areas\Manage\Assets\js\vendor\ocLazyLoad.min.js" />
@@ -674,12 +680,15 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Manage\Controllers\AccountController.cs" />
     <Compile Include="Areas\Manage\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\Manage\Controllers\DriverController.cs" />
     <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\ConnectionContext.cs" />
+    <Compile Include="Filters\Filter.cs" />
     <Compile Include="Filters\Login.cs" />
+    <Compile Include="Filters\Utilities.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -712,6 +721,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Manage\Models\" />
     <Folder Include="Areas\Manage\Views\Customers\" />
+    <Folder Include="Areas\Manage\Views\Driver\" />
+    <Folder Include="Images\Image\" />
+    <Folder Include="Images\Thumb\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\skn_curtain_Core\skn_curtain_Core.csproj">

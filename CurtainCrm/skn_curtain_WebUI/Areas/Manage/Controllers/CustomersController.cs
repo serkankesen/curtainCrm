@@ -84,6 +84,11 @@ namespace skn_curtain_WebUI.Areas.Manage.Controllers
             return Json(_repo.removeColumn(id), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult RemovePicture(int id)
+        {
+            return Json(_repo.removePicture(id), JsonRequestBehavior.AllowGet);
+        }
+
 
         public JsonResult GetAllCity()
         {

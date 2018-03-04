@@ -14,5 +14,6 @@ namespace skn_curtain_Data.Entities
         public bool Status { get; set; }
         public long CustomerId { get; set; }
         public virtual ICollection<Columns> Columns { get; set; }
+        public virtual ICollection<Pictures> Pictures { get; set; }
     }
 }

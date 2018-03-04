@@ -59,6 +59,7 @@
     <Compile Include="Entities\CurtainInfoes.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Identity.cs" />
+    <Compile Include="Entities\Pictures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

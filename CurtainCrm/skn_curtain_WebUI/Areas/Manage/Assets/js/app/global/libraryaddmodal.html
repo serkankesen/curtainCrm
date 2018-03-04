@@ -1,0 +1,95 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="cancel()" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="bold text-left">Ortam Ekle</h4>
+
+        <div class="portlet-input input-inline input-medium pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control input-circle" placeholder="ara..." ng-model="searchText.filepath">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <!--<div class="portlet light bordered">
+                    <div class="portlet-body text-center">
+                        <h4>Yüklemek istediğiniz dosyaları seçiniz</h4>
+                        <div class="fileUpload btn btn-default">
+                            <span>Yükle</span>
+                            <input id="fileupload" type="file" class="upload" multiple name="files[]" />
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <ul class="upload-list">
+                            <li class="upload-item" ng-repeat="path in model.gallerylines| filter:searchText">
+                                <!--<button type="button" class="remove" ng-click="removeFile(path)"><i class="fa fa-times"></i></button>-->
+                                <div class="thumbnail" ng-class="choise[$index]">
+                                    <a href="javascript:;" ng-click="selected(path.imagename,$index)" ng-dblclick="ok()">
+                                        <span><i class="fa fa-check"></i></span>
+                                        <img src="/BBImages/Slider/MiniImage/{{path.imagename}}" alt="{{path.filepath}}" title="{{path.filepath}}" />
+                                    </a>
+                                    <span>{{ path.filepath | limitTo:15 }}</span><br />
+                                    <span>{{ path.DateCreated | dateconverter1 }}</span>
+
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-right">
+        <button type="button" ng-click="cancel()" class="btn btn-danger">İptal</button>
+        <button type="button" ng-click="ok()" class="btn btn-success">Ekle</button>
+    </div>
+</div>
+
+<script>
+
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        url: 'Driver/SliderImageUpload',
+        autoUpload: true,
+        add: function (e, data) {
+            var uploadErrors = [];
+            var acceptFileTypes = [".jpg", ".jpeg", ".png", ".gif", ".JPG", ".JPEG", ".PNG", ".GIF"];
+            var ext = data.originalFiles[0]['name'].substring(data.originalFiles[0]['name'].lastIndexOf('.'));
+            if (data.originalFiles[0]['type'].length && !(acceptFileTypes.indexOf(ext) > -1)) {
+                uploadErrors.push('Desteklenmeyen dosya formatı');
+            }
+            if (data.originalFiles[0]['size'].length && data.originalFiles[0]['size'] > 1000000) {
+                uploadErrors.push('Dosya boyutu çok büyük.Dosya boyutunuz 5MB\'ı geçmemelidir.');
+            }
+            if (uploadErrors.length > 0) {
+                alert(uploadErrors.join("\n"));
+            } else {
+                data.submit();
+            }
+        }
+        //})
+        //.on('fileuploadprogressall', function (e, data) {
+        //    var progress = parseInt(data.loaded / data.total * 100, 10);
+        //    $('.progress .progress-bar').css('width', progress + '%');
+        //    $('#progtxt').text(progress + '%');
+    }).on('fileuploadsubmit', function (e, data) {
+        // The example input, doesn't have to be part of the upload form:
+        //var rootfolder = $('#roothdn').val();
+        //data.formData = { clientsub: rootfolder };
+        //$('#progressWrapper').show();
+
+    });
+    $(document).on("click", "a.fileDownload", function () {
+        $.fileDownload($(this).prop('href'))
+            .done(function () { alert('File download a success!'); })
+            .fail(function () { alert('File download failed!'); });
+        return false; //this is critical to stop the click event which will trigger a normal file download
+    });
+</script>

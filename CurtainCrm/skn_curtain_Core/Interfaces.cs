@@ -11,7 +11,7 @@ namespace skn_curtain_Core
         object getCustomerById(int id);
         bool remove(int id);
         bool removeCurtain(int id);
-        bool removePicture(int id)
+        bool removePicture(int id);
         bool removeColumn(int id);
         object getAllCity();
         object getCountyByCity(int id);

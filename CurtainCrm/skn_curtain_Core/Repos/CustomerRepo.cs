@@ -32,20 +32,20 @@ namespace skn_curtain_Core.Repos
                        k.ID,
                        k.FileName,
                        k.Path,
-                       k.Size
+                       k.Size,
                        k.Description,
                        k.Status,
                        k.CurtainInfoesId
-                    })
-                    Columns = a.Columns.Where(m => !m.Status).Select(k => new
-                    {
-                        k.ID,
-                        k.ColumnWidth,
-                        k.ColumnName,
-                        k.CurtainInfoesId,
-                        k.Description,
-                        k.Status
-                    })
+                    }),
+                    //Columns = a.Columns.Where(m => !m.Status).Select(k => new
+                    //{
+                    //    k.ID,
+                    //    k.ColumnWidth,
+                    //    k.ColumnName,
+                    //    k.CurtainInfoesId,
+                    //    k.Description,
+                    //    k.Status
+                    //})
                 }),
                 x.Description,
                 x.IdentityNo,
@@ -123,7 +123,7 @@ namespace skn_curtain_Core.Repos
 
                                 if (item.Pictures != null)
                                 {
-                                    foreach (var column in item.Pictures)
+                                    foreach (var picture in item.Pictures)
                                     {
                                         if (picture.ID > 0)
                                         {
@@ -133,18 +133,18 @@ namespace skn_curtain_Core.Repos
                                             Create(picture);
                                     }
                                 }
-                                if (item.Columns != null)
-                                {
-                                    foreach (var column in item.Columns)
-                                    {
-                                        if (column.ID > 0)
-                                        {
-                                            Update(column);
-                                        }
-                                        else
-                                            Create(column);
-                                    }
-                                }
+                                //if (item.Columns != null)
+                                //{
+                                //    foreach (var column in item.Columns)
+                                //    {
+                                //        if (column.ID > 0)
+                                //        {
+                                //            Update(column);
+                                //        }
+                                //        else
+                                //            Create(column);
+                                //    }
+                                //}
                                 Update(item);
                             }
                             else

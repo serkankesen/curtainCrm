@@ -67,9 +67,24 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
         // initialize core components
         Metronic.initAjax();
     });
-    $scope.model = { CurtainInfoes: [{ Columns: [] }] };
+    $scope.model = { CurtainInfoes: [{ Pictures: [] }] };
     $scope.showCommit = false;
-   
+
+    $('body').on('click', '.fileupload', function () {
+        $(this).bind('fileuploaddone', function (e, data) {
+            debugger
+            if (data.result.isValid == true) {                
+                $scope.$apply($scope.model.CurtainInfoes.Pictures.push(data.result));
+                toastr.info("Resim eklendi.", "Bilgilendirme");
+
+            } else {
+                alert(data.result.message);
+                return false;
+            }
+            return false;
+        });
+    });
+
     $http({
         method: 'get',
         url: 'manage/Customers/GetAllCity',
@@ -115,7 +130,7 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
     var ie1 = 0;
     var ise1 = 0;
     $scope.e1 = function () {
-        $scope.model.CurtainInfoes.push({ sayi: ie1, yeni: 1, isActive: true, Columns: [] });
+        $scope.model.CurtainInfoes.push({ sayi: ie1, yeni: 1, isActive: true, Pictures: [] });
         ie1 += 1;
         $scope.showCommit = true;
     }
@@ -137,11 +152,11 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
     }
 
     $scope.e1clone = function (value) {
-        $scope.model.CurtainInfoes[value].Columns.push({ sayi: ise1, yeni: 1 });
+        $scope.model.CurtainInfoes[value].Pictures.push({ sayi: ise1, yeni: 1 });
         ise1 = +1;
     }
     $scope.splicese1 = function (i, value) {
-        $scope.model.CurtainInfoes[value].Columns.splice(i, 1);
+        $scope.model.CurtainInfoes[value].Pictures.splice(i, 1);
        
     }
 })
@@ -151,7 +166,7 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         // initialize core components
         Metronic.initAjax();
     });
-    $scope.model = { CurtainInfoes: [{ Columns: [] }] };
+    $scope.model = { CurtainInfoes: [{ Pictures: [] }] };
     $scope.showCommit = false;
     $http({
         method: 'get',
@@ -169,6 +184,21 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
             $scope.county = data;
         });
     }
+    $('body').on('click', '#fileupload', function () {
+        $(this).bind('fileuploaddone', function (e, data) {
+            debugger
+            if (data.result.isValid == true) {
+                $scope.$apply($scope.model.CurtainInfoes.Pictures.push(data.result));
+                toastr.info("Resim eklendi.", "Bilgilendirme");
+
+            } else {
+                alert(data.result.message);
+                return false;
+            }
+            return false;
+        });
+    });
+
     $scope.save = function () {
         $scope.condition = false;
         //$scope.model.OpenAddress = $scope.model.OpenAddress + " - " + $scope.county.find(e => e.CountyId === $scope.model.CountyId).Name + " - " + $scope.city.find(e => e.CityId===$scope.model.CityId).Name;
@@ -177,11 +207,17 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         angular.forEach($scope.model.CurtainInfoes, function (e) {
             if (!e.CustomerId)
                 e.CustomerId = $scope.model.ID
-            angular.forEach(e.Columns, function (f) {
-                if (!f.CurtainInfoesId)
-                    f.CurtainInfoesId = e.ID
-            });
+            //angular.forEach(e.Columns, function (f) {
+            //    if (!f.CurtainInfoesId)
+            //        f.CurtainInfoesId = e.ID
+            //});
+            //angular.forEach(e.Columns, function (f) {
+            //    if (item.Status == false) $scope.model.newsimage.splice($scope.model.newsimage.indexOf(item), 1);
+            //});
         });
+
+
+
 
         $http({
             method: 'post',
@@ -202,7 +238,7 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
 
 
     $scope.splicese1 = function (i, value,colunmIndex , id) {
-        $scope.model.CurtainInfoes[value].Columns.splice(i, 1);
+        $scope.model.CurtainInfoes[value].Pictures.splice(i, 1);
         if (id != null) {
             $http({
                 method: 'post',
@@ -235,12 +271,12 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
     $scope.ie1 = 0;
     $scope.ise1 = 0;
     $scope.e1 = function () {
-        $scope.model.CurtainInfoes.push({ sayi: $scope.ie1, yeni: 1, isActive: true, Columns: [] });
+        $scope.model.CurtainInfoes.push({ sayi: $scope.ie1, yeni: 1, isActive: true, Pictures: [] });
         $scope.ie1 += 1;
     }
 
     $scope.e1clone = function (value) {
-        $scope.model.CurtainInfoes[value].Columns.push({ sayi: $scope.ise1, yeni: 1 });
+        $scope.model.CurtainInfoes[value].Pictures.push({ sayi: $scope.ise1, yeni: 1 });
         $scope.ise1 = +1;
     }
 
@@ -249,16 +285,16 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         url: '/manage/Customers/Detail',
         params: { id: $state.params.id }
     }).success(function (data) {
-        angular.forEach(data.CurtainInfoes, function (e) {
-            $scope.showCommit = true;
-            e.sayi = $scope.ie1;
-            $scope.ie1 += 1;
-            angular.forEach(e.Columns, function (f) {
-                f.sayi = $scope.ise1;
-                $scope.ise1+=1;
-            });
+        //angular.forEach(data.CurtainInfoes, function (e) {
+        //    $scope.showCommit = true;
+        //    e.sayi = $scope.ie1;
+        //    $scope.ie1 += 1;
+        //    angular.forEach(e.Columns, function (f) {
+        //        f.sayi = $scope.ise1;
+        //        $scope.ise1+=1;
+        //    });
             
-        });
+        //});
         $scope.model = data;
         $scope.getCity()
     });

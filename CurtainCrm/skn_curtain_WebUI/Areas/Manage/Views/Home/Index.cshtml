@@ -81,7 +81,6 @@
             <div class="page-content">
 
                 <!-- BEGIN PAGE HEAD -->
-                
                 <!-- END PAGE HEAD -->
                 <!-- BEGIN ACTUAL CONTENT -->
                 <!-- uiView:  -->
@@ -102,10 +101,14 @@
     <script src="../../../areas/manage/assets/global/plugins/excanvas.min.js"></script>
     <![endif]-->
 
-    <script src="../areas/manage/assets/js/vendor/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.4.1.js"></script>
+
+    <script src="../Areas/Manage/Assets/libs/jquery-ui/jquery-ui.min.js"></script>
+
     <script src="../areas/manage/assets/js/vendor/bootstrap.min.js" type="text/javascript"></script>
     <script src="../areas/manage/assets/plugins/bootstrap-toastr/toastr.min.js"></script>
-
+    <script src="../Areas/Manage/Assets/js/vendor/jquery.mousewheel.pack.js"></script>
 
 
     <!-- END CORE JQUERY PLUGINS -->
@@ -115,6 +118,7 @@
     <script src="../Areas/Manage/Assets/js/vendor/angular-checklist.js" type="text/javascript"></script>
     <script src="../Areas/Manage/Assets/js/vendor/angular-cache-buster.js"></script>
     <script src="../Areas/Manage/Assets/js/vendor/angular-confirm.js"></script>
+    <script src="../areas/Manage/assets/js/vendor/angular-file-upload.js"></script>
     <script src="../areas/manage/assets/js/vendor/ocLazyLoad.min.js" type="text/javascript"></script>
     <script src="../Areas/Manage/Assets/plugins/angular-checklist/angular-checklist-model.js"></script>
     <script src="../areas/manage/assets/js/vendor/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
@@ -152,6 +156,15 @@
             Metronic.init(); // Run metronic theme
             Metronic.setAssetsPath('../areas/manage/assets/'); // Set the assets folder path
         });
+        jQuery.browser = {};
+        (function () {
+            jQuery.browser.msie = false;
+            jQuery.browser.version = 0;
+            if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                jQuery.browser.msie = true;
+                jQuery.browser.version = RegExp.$1;
+            }
+        })();
     </script>
 
     <!-- END JAVASCRIPTS -->

@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="skn_curtain_Core" GeneratedClassName="System">
+  <Profiles />
+  <Settings>
+    <Setting Name="ThumbFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\Images\Thumb\</Value>
+    </Setting>
+    <Setting Name="ThumbVirtualPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">//localhost:56932/Images/Thumb/</Value>
+    </Setting>
+    <Setting Name="ImageFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\Images\Image\</Value>
+    </Setting>
+    <Setting Name="ImageVirtualPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">//localhost:56932/Images/Image/</Value>
+    </Setting>
+    <Setting Name="ImageSize" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">200, 150</Value>
+    </Setting>
+    <Setting Name="ThumbSize" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
