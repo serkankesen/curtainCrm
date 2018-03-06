@@ -137,26 +137,27 @@
                                                         <tr ng-repeat="path in model.CurtainInfoes[$index].Pictures">
                                                             <td> {{$index+1}} </td>
                                                             <td>
-                                                                <a class="fancybox-button" href="/Images/Image/{{path.FileName}}">
-                                                                    <img src="{{path.path}}" style="width: 50px; height: 50px;">
+                                                                <a class="fancybox-button" href="/Images/Image/{{path.name}}">
+                                                                    <img src="/Images/Image/{{path.name}}" style="width: 50px; height: 50px;">
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                {{path.FileName| limitTo:20 | htmlToPlaintext}}
+                                                                {{path.name| limitTo:20 | htmlToPlaintext}}
                                                             </td>
 
                                                             <td>
-                                                                <button ng-click="removeFile(path)" class="btn btn-default btn-sm">
+                                                                <button ng-click="removeFile(path,$parent.$index)" class="btn btn-default btn-sm remove-image">
                                                                     <i class="fa fa-times"></i>
                                                                 </button>
                                                             </td>
                                                         </tr>
+
                                                     </table>
                                                 </div>
                                                 <div class="form-group">
                                                     <span>
                                                         <label>Resim</label>
-                                                        <input id="fileupload" type="file" multiple name="files[]">
+                                                        <input class="fileupload" alt="{{$index}}" multiple type="file" name="files[]">
                                                     </span>
                                                 </div>
                                             </div>
@@ -191,38 +192,28 @@
                 }
             }
         });
-        $('#fileupload').fileupload({
-            dataType: 'json',
-            url: 'Driver/MultiImageUpload',
-            autoUpload: true,
-            add: function (e, data) {
-                var uploadErrors = [];
-                var acceptFileTypes = [".jpg", ".jpeg", ".png", ".gif", ".JPG", ".JPEG", ".PNG", ".GIF"];
-                var ext = data.originalFiles[0]['name'].substring(data.originalFiles[0]['name'].lastIndexOf('.'));
-                console.log(data);
-                if (data.originalFiles[0]['type'].length && !(acceptFileTypes.indexOf(ext) > -1)) {
-                    uploadErrors.push('Desteklenmeyen dosya formatı');
+        $('body').on('click', '.fileupload', function () {
+            $(this).fileupload({
+                dataType: 'json',
+                url: 'Driver/MultiImageUpload',
+                autoUpload: true,
+                add: function (e, data) {
+                    var uploadErrors = [];
+                    var acceptFileTypes = [".jpg", ".jpeg", ".png", ".gif", ".JPG", ".JPEG", ".PNG", ".GIF"];
+                    var ext = data.originalFiles[0]['name'].substring(data.originalFiles[0]['name'].lastIndexOf('.'));
+                    if (data.originalFiles[0]['type'].length && !(acceptFileTypes.indexOf(ext) > -1)) {
+                        uploadErrors.push('Desteklenmeyen dosya formatı');
+                    }
+                    if (data.originalFiles[0]['size'].length && data.originalFiles[0]['size'] > 10000000) {
+                        uploadErrors.push('Dosya boyutu çok büyük.Dosya boyutunuz 10MB\'ı geçmemelidir.');
+                    }
+                    if (uploadErrors.length > 0) {
+                        alert(uploadErrors.join("\n"));
+                    } else {
+                        data.submit();
+                    }
                 }
-                if (data.originalFiles[0]['size'].length && data.originalFiles[0]['size'] > 10000000) {
-                    uploadErrors.push('Dosya boyutu çok büyük.Dosya boyutunuz 10MB\'ı geçmemelidir.');
-                }
-                if (uploadErrors.length > 0) {
-                    alert(uploadErrors.join("\n"));
-                } else {
-                    data.submit();
-                }
-            }
-            //})
-            //.on('fileuploadprogressall', function (e, data) {
-            //    var progress = parseInt(data.loaded / data.total * 100, 10);
-            //    $('.progress .progress-bar').css('width', progress + '%');
-            //    $('#progtxt').text(progress + '%');
-        }).on('fileuploadsubmit', function (e, data) {
-            // The example input, doesn't have to be part of the upload form:
-            //var rootfolder = $('#roothdn').val();
-            //data.formData = { clientsub: rootfolder };
-            //$('#progressWrapper').show();
-
+            }).on('fileuploadsubmit', function (e, data) { });
         });
 
         $(document).on("click", "a.fileDownload", function () {

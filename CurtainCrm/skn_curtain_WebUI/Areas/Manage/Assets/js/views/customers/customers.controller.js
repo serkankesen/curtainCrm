@@ -73,8 +73,11 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
     $('body').on('click', '.fileupload', function () {
         $(this).bind('fileuploaddone', function (e, data) {
             debugger
-            if (data.result.isValid == true) {                
-                $scope.$apply($scope.model.CurtainInfoes.Pictures.push(data.result));
+            if (data.result.isValid === true) {  
+                if ($scope.model.CurtainInfoes[parseInt(data.fileInput.context.alt)].Pictures.find(a => a.name === data.result.name)) {
+                    return;
+                }
+                $scope.$apply($scope.model.CurtainInfoes[parseInt(data.fileInput.context.alt)].Pictures.push(data.result));
                 toastr.info("Resim eklendi.", "Bilgilendirme");
 
             } else {
@@ -84,6 +87,25 @@ BackOffice.controller('CustomerSetController', function ($rootScope, $scope, $ht
             return false;
         });
     });
+
+    $scope.removeFile = function (path,rowId) {
+        
+        console.log(path);
+        console.log($scope.model);
+        debugger
+        $scope.model.CurtainInfoes[parseInt(rowId)].Pictures.splice($scope.model.CurtainInfoes[parseInt(rowId)].Pictures.indexOf(path), 1);
+        $http({
+            method: 'get',
+            url: 'Driver/RemoveImage',
+            params: { name: path.name },
+        }).success(function (data, status, headers, config) {
+            //$.gritter.add({ text: "success" });
+            toastr.info("Resim(ler) silindi.", "Bilgilendirme");
+        }).error(function (data, status, headers, config) {
+            //$.gritter.add({ text: 'Beklenmedik bir hata oluştu,lütfen tekrar deneyiniz' });
+            console.log(data);
+        });
+    };
 
     $http({
         method: 'get',
@@ -184,11 +206,14 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
             $scope.county = data;
         });
     }
-    $('body').on('click', '#fileupload', function () {
+
+    $('body').on('click', '.fileupload', function () {
         $(this).bind('fileuploaddone', function (e, data) {
-            debugger
-            if (data.result.isValid == true) {
-                $scope.$apply($scope.model.CurtainInfoes.Pictures.push(data.result));
+            if (data.result.isValid === true) {
+                if ($scope.model.CurtainInfoes[parseInt(data.fileInput.context.alt)].Pictures.find(a => a.name === data.result.name)) {
+                    return;
+                }
+                $scope.$apply($scope.model.CurtainInfoes[parseInt(data.fileInput.context.alt)].Pictures.push(data.result));
                 toastr.info("Resim eklendi.", "Bilgilendirme");
 
             } else {
@@ -199,6 +224,32 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         });
     });
 
+    $scope.removeFile = function (path, rowId) {
+        debugger
+        console.log(path);
+        console.log($scope.model);
+        $http({
+            method: 'post',
+            url: 'manage/Customers/RemovePicture',
+            data: { id: path.ID },
+        }).success(function (data, status, headers, config) {
+        }).error(function (data, status, headers, config) {
+
+            console.log(data);
+        });
+        $scope.model.CurtainInfoes[parseInt(rowId)].Pictures.splice($scope.model.CurtainInfoes[parseInt(rowId)].Pictures.indexOf(path), 1);
+        $http({
+            method: 'get',
+            url: 'Driver/RemoveImage',
+            params: { name: path.name },
+        }).success(function (data, status, headers, config) {
+            //$.gritter.add({ text: "success" });
+            toastr.info("Resim(ler) silindi.", "Bilgilendirme");
+        }).error(function (data, status, headers, config) {
+            //$.gritter.add({ text: 'Beklenmedik bir hata oluştu,lütfen tekrar deneyiniz' });
+            console.log(data);
+        });
+    };
     $scope.save = function () {
         $scope.condition = false;
         //$scope.model.OpenAddress = $scope.model.OpenAddress + " - " + $scope.county.find(e => e.CountyId === $scope.model.CountyId).Name + " - " + $scope.city.find(e => e.CityId===$scope.model.CityId).Name;
@@ -207,14 +258,13 @@ BackOffice.controller('CustomerController', function ($rootScope, $scope, $http,
         angular.forEach($scope.model.CurtainInfoes, function (e) {
             if (!e.CustomerId)
                 e.CustomerId = $scope.model.ID
-            //angular.forEach(e.Columns, function (f) {
-            //    if (!f.CurtainInfoesId)
-            //        f.CurtainInfoesId = e.ID
-            //});
-            //angular.forEach(e.Columns, function (f) {
-            //    if (item.Status == false) $scope.model.newsimage.splice($scope.model.newsimage.indexOf(item), 1);
-            //});
+            angular.forEach(e.Pictures, function (f) {
+                if (!f.CurtainInfoesId)
+                    f.CurtainInfoesId = e.ID
+            });
+           
         });
+        debugger
 
 
 

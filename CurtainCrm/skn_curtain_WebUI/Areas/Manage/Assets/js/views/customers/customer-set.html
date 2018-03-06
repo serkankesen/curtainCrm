@@ -136,8 +136,8 @@
                                                         <tr ng-repeat="path in model.CurtainInfoes[$index].Pictures">
                                                             <td> {{$index+1}} </td>
                                                             <td>
-                                                                <a class="fancybox-button" href="/Images/Image/{{path.FileName}}">
-                                                                    <img src="{{path.Path}}" style="width: 50px; height: 50px;">
+                                                                <a class="fancybox-button" href="/Images/Image/{{path.name}}">
+                                                                    <img src="/Images/Image/{{path.name}}" style="width: 50px; height: 50px;">
                                                                 </a>
                                                             </td>
                                                             <td>
@@ -145,7 +145,7 @@
                                                             </td>
 
                                                             <td>
-                                                                <button ng-click="removeFile(Path)" class="btn btn-default btn-sm">
+                                                                <button ng-click="removeFile(path,$parent.$index)" class="btn btn-default btn-sm remove-image">
                                                                     <i class="fa fa-times"></i>
                                                                 </button>
                                                             </td>
@@ -199,9 +199,6 @@
                 var uploadErrors = [];
                 var acceptFileTypes = [".jpg", ".jpeg", ".png", ".gif", ".JPG", ".JPEG", ".PNG", ".GIF"];
                 var ext = data.originalFiles[0]['name'].substring(data.originalFiles[0]['name'].lastIndexOf('.'));
-                data.originalFiles[0].name = data.originalFiles[0]['name'].split("/").pop().split(".")[0] + $(this).attr("alt") + ext;
-                debugger
-                console.log(data);
                 if (data.originalFiles[0]['type'].length && !(acceptFileTypes.indexOf(ext) > -1)) {
                     uploadErrors.push('Desteklenmeyen dosya formatı');
                 }

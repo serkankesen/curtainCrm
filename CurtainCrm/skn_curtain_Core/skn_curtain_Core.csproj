@@ -76,10 +76,6 @@
   <ItemGroup>
     <Compile Include="DbContext.cs" />
     <Compile Include="Interfaces.cs" />
-    <Compile Include="Migrations\201803041943138_add_name.cs" />
-    <Compile Include="Migrations\201803041943138_add_name.Designer.cs">
-      <DependentUpon>201803041943138_add_name.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -114,11 +110,6 @@
       <Project>{ad29a407-606a-4417-82d4-6ea789ec3fc1}</Project>
       <Name>skn_curtain_Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803041943138_add_name.resx">
-      <DependentUpon>201803041943138_add_name.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

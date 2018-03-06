@@ -30,6 +30,7 @@ namespace skn_curtain_Core.Repos
                     Pictures = a.Pictures.Where(m => !m.Status).Select(k => new
                     {
                        k.ID,
+                       k.name,
                        k.FileName,
                        k.Path,
                        k.Size,

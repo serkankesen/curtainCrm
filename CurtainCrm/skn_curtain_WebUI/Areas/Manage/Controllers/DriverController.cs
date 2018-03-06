@@ -100,6 +100,7 @@ namespace skn_curtain_WebUI.Areas.Manage.Controllers
                 if (System.IO.File.Exists(Server.MapPath(skn_curtain_Core.Properties.System.Default.ImageFolderPath + name)))
                 {
                     System.IO.File.Delete(Server.MapPath(skn_curtain_Core.Properties.System.Default.ThumbFolderPath + name));
+                    System.IO.File.Delete(Server.MapPath(skn_curtain_Core.Properties.System.Default.ImageFolderPath + name));
 
                 }
             }

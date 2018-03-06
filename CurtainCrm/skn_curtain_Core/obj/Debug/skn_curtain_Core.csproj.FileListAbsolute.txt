@@ -70,5 +70,3 @@ C:\Users\serka\Documents\Visual Studio 2017\Projects\CurtainCrm\CurtainCrm\skn_c
 C:\Users\serka\Documents\Visual Studio 2017\Projects\CurtainCrm\CurtainCrm\skn_curtain_Core\obj\Debug\skn_curtain_Core.csproj.CoreCompileInputs.cache
 C:\Users\serka\Documents\Visual Studio 2017\Projects\CurtainCrm\CurtainCrm\skn_curtain_Core\obj\Debug\skn_curtain_Core.dll
 C:\Users\serka\Documents\Visual Studio 2017\Projects\CurtainCrm\CurtainCrm\skn_curtain_Core\obj\Debug\skn_curtain_Core.pdb
-C:\Users\serka\Documents\Visual Studio 2017\Projects\CurtainCrm\CurtainCrm\skn_curtain_Core\obj\Debug\skn_curtain_Core.Migrations.add_name.resources
-C:\Users\serka\Documents\Visual Studio 2017\Projects\CurtainCrm\CurtainCrm\skn_curtain_Core\obj\Debug\skn_curtain_Core.csproj.GenerateResource.Cache
